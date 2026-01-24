@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pay with AiQR</title>
+  <link rel="stylesheet" href="style.css">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f7fa;
+  color: #222;
+}
+
+header {
+  background: #0a2540;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+}
+
+h1{
+    color: #f2f2f2;
+}
+
+h2 {
+  color: #0a2540;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1e4fd8;
+}
+
+input {
+  width: 80%;
+  padding: 10px;
+  margin: 20px 10px;
+}
+
+.qr-box {
+  margin-top: 20px;
+  text-align: center;
+}
+
+</style>
+
+
+</head>
+<body>
+
+<div class="container" style="text-align:center;">
+  <h2 id="merchantName"></h2>
+  <p>Select how you want to pay</p>
+
+  <button id="snapscanBtn">Pay with SnapScan</button><br><br>
+  <button id="zapperBtn">Pay with Zapper</button><br><br>
+  <button id="bankBtn">Pay with Bank App</button>
+</div>
+
+<script>
+  const merchant = JSON.parse(localStorage.getItem("merchant"));
+
+  document.getElementById("merchantName").innerText = merchant.name;
+
+  document.getElementById("snapscanBtn").onclick = () => {
+    window.location.href = merchant.snapscan;
+  };
+
+  document.getElementById("zapperBtn").onclick = () => {
+    window.location.href = merchant.zapper;
+  };
+
+  document.getElementById("bankBtn").onclick = () => {
+    window.location.href = merchant.bank;
+  };
+</script>
+
+</body>
+</html>
