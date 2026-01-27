@@ -2,84 +2,22 @@
 <html>
 <head>
   <title>Sign Up – AiQR</title>
-  
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f5f7fa;
-  color: #222;
-}
-
-header {
-  background: #0a2540;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.container {
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-}
-
-h1{
-    color: #f2f2f2;
-}
-
-h2 {
-  color: #0a2540;
-}
-
-button {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #1e4fd8;
-}
-
-input {
-  width: 80%;
-  padding: 10px;
-  margin: 20px 10px;
-}
-
-.qr-box {
-  margin-top: 20px;
-  text-align: center;
-}
-
-</style>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="AiQR logo image.jpeg">
 </head>
 <body>
 
 <header>
   <h1>Create Your AiQR</h1>
 </header>
-
-<div class="container">
+<div class="form-container">
   <h2>Merchant Sign Up</h2>
-
- <input id="name" placeholder="Business Name">
-<input id="snapscan" placeholder="SnapScan Payment Link (optional)">
-<input id="zapper" placeholder="Zapper Payment Link (optional)">
-<input id="bank" placeholder="Bank / Wallet Link (optional)">
-
+  <input id="name" placeholder="Business Name">
+  <input id="snapscan" placeholder="SnapScan Payment Link (optional)">
+  <input id="zapper" placeholder="Zapper Payment Link (optional)">
+  <input id="bank" placeholder="Bank / Wallet Link (optional)">
   <button onclick="saveMerchant()">Create My QR</button>
 </div>
 
