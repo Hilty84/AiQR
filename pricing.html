@@ -3,9 +3,9 @@
 <head>
   <title>AiQR Pricing</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="AiQR logo image.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="AiQR logo image.jpeg">
 </head>
 <body>
 
@@ -14,31 +14,54 @@
 </header>
 
 <div class="container">
-  <h2>Simple pricing for every business</h2>
+  <h2>Simple, modular pricing</h2>
+  <p>Start with payments. Add engagement when you’re ready.</p>
 
-  <h3>Free</h3>
-  <p>• 1 universal QR page<br>• Works with all payment apps<br>• AiQR branding</p>
+  <div class="section">
+    <h3>Starter — Free</h3>
+    <p>
+      ✔ One universal AiQR<br>
+      ✔ Works with SnapScan, Zapper & bank apps<br>
+      ✔ Payment routing only<br>
+      ✔ AiQR branding
+    </p>
+  </div>
 
-  <h3>Business – R79 / month</h3>
-  <p>• Custom branding<br>• Unlimited scans<br>• Basic Analytics (coming soon)</p>
+  <div class="section">
+    <h3>Business — R79 / month</h3>
+    <p>
+      ✔ Everything in Starter<br>
+      ✔ Post-payment engagement<br>
+      ✔ Feedback & receipt screen<br>
+      ✔ Remove AiQR branding
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>Analytics Add-On — Coming Soon</h3>
+    <p>
+      ✔ Scan rate per QR<br>
+      ✔ Payment completion rate<br>
+      ✔ Engagement participation<br>
+      ✔ Drop-off insights
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>Campaigns Add-On — Pilot Only</h3>
+    <p>
+      ✔ Instant rewards<br>
+      ✔ Scratch & win mechanics<br>
+      ✔ Store or time-based promotions
+    </p>
+  </div>
 
   <button onclick="location.href='signup.html'">Get Started</button>
+
+  <p style="margin-top:30px; font-size:13px; color:#666;">
+    AiQR does not process payments and does not replace your existing providers.
+  </p>
 </div>
-
-<script>
-  function saveMerchant() {
-  const merchant = {
-    name: document.getElementById("name").value,
-    snapscan: document.getElementById("snapscan").value,
-    zapper: document.getElementById("zapper").value,
-    bank: document.getElementById("bank").value,
-    id: Date.now()
-  };
-
-  localStorage.setItem("merchant", JSON.stringify(merchant));
-  window.location.href = "dashboard.html";
-}
-</script>
 
 </body>
 </html>
