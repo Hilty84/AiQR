@@ -2,46 +2,86 @@
 <html>
 <head>
   <title>Pay with AiQR</title>
-   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="AiQR logo image.jpeg">
-
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="AiQR logo image.jpeg">
 </head>
 <body>
 
-<div class="pay-container">
+<!-- PAYMENT STEP -->
+<div class="pay-container" id="paymentStep">
   <h2 id="merchantName"></h2>
   <p>Select how you want to pay</p>
 
-  <button id="snapscanBtn">Pay with SnapScan</button><br><br>
-  <button id="zapperBtn">Pay with Zapper</button><br><br>
+  <button id="snapscanBtn">Pay with SnapScan</button>
+  <button id="zapperBtn">Pay with Zapper</button>
   <button id="bankBtn">Pay with Bank App</button>
+
+  <p style="margin-top:20px; font-size:13px; color:#777;">
+    You’ll be taken to your payment app to complete payment.
+  </p>
+</div>
+
+<!-- POST-PAYMENT ENGAGEMENT (OPTIONAL) -->
+<div class="pay-container" id="postPaymentStep" style="display:none;">
+  <h2>Thanks for your payment 🙌</h2>
+  <p>Would you like to do anything else?</p>
+
+  <button onclick="rateExperience()">⭐ Rate your experience</button>
+  <button onclick="getReward()">🎁 Get an instant reward</button>
+  <button onclick="viewReceipt()">🧾 View receipt</button>
+
+  <p style="margin-top:20px; font-size:13px; color:#777;">
+    This is optional — you can close this page anytime.
+  </p>
 </div>
 
 <script>
   const merchantData = localStorage.getItem("merchant");
 
-if (!merchantData) {
-  alert("Merchant not found. Please scan the QR code again.");
-} else {
-  const merchant = JSON.parse(merchantData);
-  document.getElementById("merchantName").innerText = merchant.name;
+  if (!merchantData) {
+    alert("Merchant not found. Please scan the QR code again.");
+  } else {
+    const merchant = JSON.parse(merchantData);
+    document.getElementById("merchantName").innerText = merchant.name;
 
-  document.getElementById("snapscanBtn").onclick = () => {
-    window.location.href = merchant.snapscan;
-  };
+    function goToPayment(url) {
+      if (!url) {
+        alert("This payment option is not available.");
+        return;
+      }
 
-  document.getElementById("zapperBtn").onclick = () => {
-    window.location.href = merchant.zapper;
-  };
+      // Mark that user left to pay (not that payment succeeded)
+      localStorage.setItem("awaitingReturn", "true");
+      window.location.href = url;
+    }
 
-  document.getElementById("bankBtn").onclick = () => {
-    window.location.href = merchant.bank;
-  };
-}
+    document.getElementById("snapscanBtn").onclick = () => goToPayment(merchant.snapscan);
+    document.getElementById("zapperBtn").onclick = () => goToPayment(merchant.zapper);
+    document.getElementById("bankBtn").onclick = () => goToPayment(merchant.bank);
+  }
+
+  // If user naturally returns after payment
+  if (localStorage.getItem("awaitingReturn") === "true") {
+    document.getElementById("paymentStep").style.display = "none";
+    document.getElementById("postPaymentStep").style.display = "flex";
+    localStorage.removeItem("awaitingReturn");
+  }
+
+  // Placeholder engagement actions (future add-ons)
+  function rateExperience() {
+    alert("Thank you! Your feedback has been recorded 👍");
+  }
+
+  function getReward() {
+    alert("🎉 You’ve unlocked an instant reward!");
+  }
+
+  function viewReceipt() {
+    alert("Receipt functionality coming soon.");
+  }
 </script>
 
 </body>
 </html>
-
